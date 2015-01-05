@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Breadcrumb" representedClassName="Breadcrumb" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="breadcrumbs" inverseEntity="Run" syncable="YES"/>
+    </entity>
+    <entity name="Interval" representedClassName="Interval" syncable="YES">
+        <attribute name="lengthInKmOrSeconds" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="pace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeDistanceOrTime" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="intervals" inverseEntity="Workout" syncable="YES"/>
+    </entity>
+    <entity name="IntervalRecord" representedClassName="IntervalRecord" syncable="YES">
+        <attribute name="distanceInKm" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeInS" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="intervalRecords" inverseEntity="Run" syncable="YES"/>
+    </entity>
+    <entity name="Run" representedClassName="Run" syncable="YES">
+        <attribute name="breadcrumbCount" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="currentInterval" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="currentPaceInSecondsPerKM" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="breadcrumbs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Breadcrumb" inverseName="run" inverseEntity="Breadcrumb" syncable="YES"/>
+        <relationship name="intervalRecords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IntervalRecord" inverseName="run" inverseEntity="IntervalRecord" syncable="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="runs" inverseEntity="Workout" syncable="YES"/>
+        <relationship name="workoutRecord" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutRecord" inverseName="run" inverseEntity="WorkoutRecord" syncable="YES"/>
+    </entity>
+    <entity name="Workout" representedClassName="Workout" syncable="YES">
+        <attribute name="intervalCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selected" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="intervals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interval" inverseName="workout" inverseEntity="Interval" syncable="YES"/>
+        <relationship name="runs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Run" inverseName="workout" inverseEntity="Run" syncable="YES"/>
+    </entity>
+    <entity name="WorkoutRecord" representedClassName="WorkoutRecord" syncable="YES">
+        <attribute name="distanceInKm" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeInS" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Run" inverseName="workoutRecord" inverseEntity="Run" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Breadcrumb" positionX="-594" positionY="-225" width="128" height="103"/>
+        <element name="Interval" positionX="-198" positionY="-45" width="128" height="118"/>
+        <element name="Run" positionX="-378" positionY="-243" width="128" height="193"/>
+        <element name="Workout" positionX="-198" positionY="-198" width="128" height="118"/>
+        <element name="IntervalRecord" positionX="-387" positionY="-108" width="128" height="103"/>
+        <element name="WorkoutRecord" positionX="-378" positionY="-99" width="128" height="88"/>
+    </elements>
+</model>
